@@ -2,25 +2,27 @@ using UnityEngine;
 
 public class LookAt : MonoBehaviour
 {
-    // public Transform target;
-    
-    // private void Start () {
-    //     Vector3 direction = target.position - transform.position;
-    //     Debug.Log("direction" + direction);
-    //     Quaternion rotation = Quaternion.LookRotation(direction);
-    //     Debug.Log("rotation" + rotation);
-    //     transform.rotation = rotation;
-    //     Debug.Log("transform.rotation" + transform.rotation);
-    // }
+    public Vector3 p;   
 
-    // tree = GameObject.Find("Tree").GetComponent<UIComponentType>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+        if (transform.position.y > 0) {
+            p[1] = 1f;
+        }
+        if (transform.position.y < 0) {
+            transform.LookAt(Vector3.down);
+        }    
+        Debug.Log("p: " + p);
+        Debug.Log("Position: " + transform.position.y);
     }
+
     void Update()
     {
-        transform.LookAt(Vector3.up);
+        if (transform.position.y < 0) {
+            transform.LookAt(Vector3.down);
+            transform.Rotate(180.0f, 0.0f, 0.0f, Space.Self);
+        } else {
+            transform.LookAt(p);
+        }
+        
     }
 }
