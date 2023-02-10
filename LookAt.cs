@@ -7,9 +7,12 @@ public class LookAt : MonoBehaviour
     void Start() {
         if (transform.position.y > 0) {
             p[1] = 1f;
+            transform.LookAt(p);
         }
         if (transform.position.y < 0) {
             transform.LookAt(Vector3.down);
+            //randomize x slightly
+            transform.Rotate(180.0f, 0.0f, 0.0f, Space.Self);
         }    
         Debug.Log("p: " + p);
         Debug.Log("Position: " + transform.position.y);
@@ -17,12 +20,12 @@ public class LookAt : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y < 0) {
-            transform.LookAt(Vector3.down);
-            transform.Rotate(180.0f, 0.0f, 0.0f, Space.Self);
-        } else {
-            transform.LookAt(p);
-        }
+        // if (transform.position.y < 0) {
+        //     transform.LookAt(Vector3.down);
+            
+        // } else {
+        //     transform.LookAt(p);
+        // }
         
     }
 }
